@@ -1,0 +1,36 @@
+.hero1{
+    background-image: url('../clientImages/nA_bg_main.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh; 
+    transition: all 1s;
+}
+.hero2{
+    background-image: url('../clientImages/bg_main2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh; 
+    transition: all 1s;
+}
+/* .hero3{
+    background-image: url('../clientImages/nA_bg_main.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh; 
+} */
+
+.contentShape {
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+    position: relative;
+    background: rgb(255, 255, 255);
+    padding-top: 450px;
+    margin-top: -280px;
+    padding-bottom: 530px;
+    background-image: url('../clientImages/home_curve.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
