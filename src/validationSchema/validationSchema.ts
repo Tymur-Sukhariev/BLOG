@@ -23,8 +23,8 @@ const validatePasswordLength = (value:string) => {
     return /[!@#$&_]/.test(value); 
   };
 
-  const validateNameLetter = (value:string)=>{
-    if(value.length === 0) {return true};
+  const validateNameLetter = (value:string|undefined)=>{
+    if(!value) {return true};
     return /^[A-Za-z]+$/.test(value);
   }
 
@@ -52,10 +52,10 @@ const validationSchema = Yup.object().shape({
 
 
     userName: Yup.string()
+    .required('Username is required!')
     .min(5, "Username should contain 5-15 characters!.") 
     .max(15, "Username should contain 5-15 characters!")
-    .test('symbols', 'Allowed: a-z, numbers, symbols(_ - .)', validateUsername)
-    .required('Username is required!'),
+    .test('symbols', 'Allowed: a-z, numbers, symbols(_ - .)', validateUsername),
 
     password: Yup.string()
     .required('Password is required!')
@@ -66,8 +66,8 @@ const validationSchema = Yup.object().shape({
     .test('symbol', 'Must contain at least one special character (@, #, $, &, _)', validatePasswordSymbol),
 
     repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match.')
-    .required('Repeat password is required.'),
+    .required('Repeat password is required.')
+    .oneOf([Yup.ref('password')], 'Passwords must match.'),
 })
 
 export default validationSchema;
