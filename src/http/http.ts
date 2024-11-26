@@ -1,16 +1,7 @@
+import type RegisterUserType from "~/types/RegisterUserType";
 
 
-
-export async function registerUser(data:any) {
-
-
-    // const sendData = {
-    //     firstName:"data",
-    //     lastName:"data",
-    //     userName:"data",
-    //     email:"data",
-    //     password:"data",
-    // }
+export async function registerUser(data:RegisterUserType) {
 
     try {
         const fetchResponse = await fetch('http://localhost:3000/api/addUsers', {
@@ -21,21 +12,21 @@ export async function registerUser(data:any) {
             },
         });
 
-        // Log the status and response text
-        console.log('Response status:', fetchResponse.status);
-        const responseText = await fetchResponse.text(); // Read response as text
-        console.log('Response body:', responseText); // Log response body
-
-        // Check if response is OK
         if (!fetchResponse.ok) {
-            throw new Error(`Failed to register user: ${responseText}`);
+            throw new Error(`Failed to register user`);
+        }
+        
+        type RegisterUserResponse = {
+            message: string;
+            user: RegisterUserType; 
         }
 
-        // Parse the JSON response
-        const result = JSON.parse(responseText); // Parse the response text as JSON
+        const result = (await fetchResponse.json()) as RegisterUserResponse;
         return result;
+        
+        
     } catch (error) {
         console.error("Error in registerUser:", error);
-        throw error; // Re-throw the error for handling in the mutation
+        throw error; 
     }
 }

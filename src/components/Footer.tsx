@@ -22,7 +22,7 @@ export default function Footer(){
                 </div>
 
                 <div>
-                    <h1 className="text-[32px] uppercase mb-[30px]">don't miss out!</h1>
+                    <h1 className="text-[32px] uppercase mb-[30px]">{`don't miss out!`}</h1>
                     <button>SUBSCRIBE FOR UPDATES!</button>
                 </div>
 

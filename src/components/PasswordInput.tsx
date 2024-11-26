@@ -1,54 +1,59 @@
-
+"use client"
 
 import showPasswordIcon from '../icons/showPassword.svg'
 import hidePasswordIcon from '../icons/hidePassword.svg'
-import Image from 'next/image'
-import { UseFormRegister, FieldErrors } from 'react-hook-form';
+import Image, {type StaticImageData} from 'next/image';
+import {type UseFormRegister, type FieldErrors } from 'react-hook-form';
 import React from "react";
+import type SignUpFormShape from '~/types/SignUpForm';
+import { useState } from 'react'
 
 type PasswordInputProps = {
-  toRegister: string, // Name for the register function (e.g., 'password')
-  isShowType: boolean, // Controls input type (password/text)
-  handleShow: () => void, // Toggles password visibility
-  registerFunction: any,
-  errors: any,
-  children: React.ReactNode,
+  toRegister: keyof SignUpFormShape, 
+  registerFunction: UseFormRegister<SignUpFormShape>,
+  errors: FieldErrors<SignUpFormShape>,
+  children: string,
 };
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
   toRegister,
-  isShowType,
-  handleShow,
   registerFunction,
   children,
   errors,
 }) => {
+
+  const [isShow, setIsShow] = useState<boolean>(false)
+  
+  function handleShowPassword():void{
+      setIsShow(prev=>!prev)
+  }
+
   return (
- <>
-      <input
-        type={isShowType ? 'text' : 'password'}
-        placeholder={children}
-        {...registerFunction(toRegister)} 
-      />
-      {/* {!isShowType ? (
-        <Image
-          className='absolute right-0 bottom-0'
-          onClick={handleShow}
-          src={showPasswordIcon}
-          alt='showPasswordIcon'
-        />
-      ) : (
-        <Image
-          className='absolute right-0 bottom-0'
-          onClick={handleShow}
-          src={hidePasswordIcon}
-          alt='hidePasswordIcon'
-          width={22}
-        />
-      )
-      } */}
-      {errors[toRegister]?.message && <p className='w-60'>{errors[toRegister]?.message}</p>}
-      </>
+      <div className='relative'>
+            <input
+              type={isShow ? 'text' : 'password'}
+              placeholder={children}
+              {...registerFunction(toRegister)} 
+            />
+            {!isShow ? (
+              <Image
+                className='absolute right-[6px] bottom-[10px] cursor-pointer'
+                onClick={handleShowPassword}
+                src={showPasswordIcon as StaticImageData}
+                alt='showPasswordIcon'
+              />
+            ) : (
+              <Image
+                className='absolute right-[6px] bottom-[10px] cursor-pointer'
+                onClick={handleShowPassword}
+                src={hidePasswordIcon as StaticImageData}
+                alt='hidePasswordIcon'
+                width={22}
+              />
+            )
+            }
+            {errors[toRegister]?.message && <p className='w-60'>{errors[toRegister]?.message}</p>}
+      </div>
   );
 };
 

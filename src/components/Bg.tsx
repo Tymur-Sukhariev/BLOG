@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react';
 import { motion } from 'framer-motion';
-import Image from "next/image";
+import Image, {type StaticImageData} from "next/image";
 import doubleVector from '../clientImages/double.svg'
 import Link from 'next/link';
 import styles from '../css/bg.module.css'
@@ -51,7 +51,7 @@ export default function Bg(){
             
             >
                 <div className={` w-[631px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
-                    <Image className='z-[-10] absolute top-[-80px] w-[222px]' src={doubleVector} alt='doubleVector'/>
+                    <Image className='z-[-10] absolute top-[-80px] w-[222px]' src={doubleVector as StaticImageData} alt='doubleVector'/>
                     <h1 className="z-20 text-7xl text-center text-white mb-[150px]">
                         Stay Ahead of the Game!
                     </h1>

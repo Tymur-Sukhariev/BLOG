@@ -14,36 +14,45 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+
 model User {
-  id           String   @id @default(uuid())
-  firstName    String?  @db.VarChar(25)
-  lastName     String?  @db.VarChar(25)
-  userName     String   @db.VarChar(15) @unique
-  email        String   @db.VarChar(50) @unique
-  password     String   @db.VarChar(20)
-  avatar       String?  @db.VarChar(255)
-  subscription Boolean
+  id             String      @id @default(uuid())
+  firstName      String?     @db.VarChar(25)
+  lastName       String?     @db.VarChar(25)
+  userName       String      @db.VarChar(15) @unique
+  email          String      @db.VarChar(50) @unique
+  password       String      @db.VarChar(20)
+  avatar         String?     @db.VarChar(255)
+  subscription   Boolean
 
-  posts        Post[]
-  comments     Comment[]
-  likes        Like[]
+
+  posts          Post[]
+  comments       Comment[]
+  likes          Like[]
+  accounts       Account[]   
+  sessions       Session[]   
+
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 }
 
+// 2. Post Model
 model Post {
-  id           String   @id @default(uuid())
-  title        String   @db.VarChar(60)
-  previewText  String   @db.VarChar(100)
-  content      String
-  image        String   @db.VarChar(255)
-  category     String   @db.VarChar(11)
-  timestamp    DateTime @db.Date
+  id            String   @id @default(uuid())
+  title         String   @db.VarChar(60)
+  previewText   String   @db.VarChar(100)
+  content       String
+  image         String   @db.VarChar(255)
+  category      String   @db.VarChar(11)
+  timestamp     DateTime @db.Date
 
-  authorId     String
-  author       User     @relation(fields: [authorId], references: [id])
-  comments     Comment[]
-  likes        Like[]
+  authorId      String
+  author        User     @relation(fields: [authorId], references: [id])
+  comments      Comment[]
+  likes         Like[]
 }
 
+// 3. Comment Model
 model Comment {
   id           String   @id @default(uuid())
   userId       String
@@ -55,12 +64,54 @@ model Comment {
   post         Post     @relation(fields: [postId], references: [id])
 }
 
+// 4. Like Model
 model Like {
-  iid           String   @id @default(uuid())
+  id           String   @id @default(uuid())
   userId       String
   postId       String
 
   user         User     @relation(fields: [userId], references: [id])
   post         Post     @relation(fields: [postId], references: [id])
+}
+
+// 5. Account Model for NextAuth OAuth support
+model Account {
+  id                 String    @id @default(cuid())
+  userId             String    // Foreign key to User
+  provider           String    // OAuth provider (e.g., "google", "github")
+  providerAccountId  String    // Unique ID for the account with the provider
+  type               String    // Type of account (e.g., "oauth")
+  refresh_token      String?   // Optional: Refresh token
+  access_token       String?   // Optional: Access token
+  expires_at         Int?      // Optional: Expiration timestamp
+  token_type         String?   // Optional: Type of token
+  scope              String?   // Optional: Scope of the access token
+  id_token           String?   // Optional: ID token
+  session_state      String?   // Optional: Session state
+
+  // Relations
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId]) // Unique constraint for provider accounts
+}
+
+// 6. Session Model for NextAuth session management
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique // Unique session token
+  userId       String   // Foreign key to User
+  expires      DateTime // Expiration timestamp for session
+
+  // Relations
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// 7. VerificationToken Model for NextAuth email verification
+model VerificationToken {
+  identifier   String   // User identifier, usually the email
+  token        String   @unique // Unique token for verification
+  expires      DateTime // Expiration timestamp for the token
+
+  @@unique([identifier, token]) // Unique constraint on identifier and token
 }
 

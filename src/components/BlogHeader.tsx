@@ -1,5 +1,5 @@
 import doubleVector from '../clientImages/double.svg'
-import Image from 'next/image'
+import Image, {type StaticImageData} from 'next/image'
 
 export default function BlogHeader(){
     return(
@@ -8,7 +8,7 @@ export default function BlogHeader(){
             <p className="text-[14px] bg-[#181A2A] px-[12px] py-[5px] rounded-full">Our blog</p>
 
             <div className='relative'>
-                <Image className='z-[-10] absolute top-[-80px] w-[222px] opacity-[0.52]' src={doubleVector} alt='doubleVector'/>
+                <Image className='z-[-10] absolute top-[-80px] w-[222px] opacity-[0.52]' src={doubleVector as StaticImageData} alt='doubleVector'/>
                 <h1 className="text-[48px]">Resources and Insights</h1>
             </div>
             
