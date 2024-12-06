@@ -8,16 +8,27 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react'
 import Input from '../../components/Input';
 import {useMutation } from '@tanstack/react-query'
-import { registerUser } from '../../http/http';
+import { registerUser } from '../../http/signUpRequest';
 import infoImg from '../../clientImages/info.svg'
 import Image from 'next/image';
 import styles from '../../css/signUp.module.css'
+<<<<<<< Updated upstream
 
 
+=======
+import type SignUpFormShape from '~/types/SignUpForm';
+import eclipse1 from '../../clientImages/Ellipse 1.svg'
+// import cookie from "cookie";
+>>>>>>> Stashed changes
 
+// function goCookie():void{
+//     const token = 'YOUR_JWT_TOKEN';
+//     Cookies.set('token', token, { expires: 7, secure: true });
+// }
 
 const SignUp = ()=>{
 
+<<<<<<< Updated upstream
     // const {mutate, isPending, isError, error} = useMutation({
     //     mutationFn: registerUser,
     //     onSuccess: (data)=>{
@@ -27,12 +38,26 @@ const SignUp = ()=>{
     //         console.error("Error:", error); 
     //     }
     // });
+=======
+    // goCookie();    
+
+    const {mutate, isPending, isError, error} = useMutation({
+        mutationFn: registerUser,
+        onSuccess: (data)=>{
+            console.log("yeeess!", data);
+        },
+        onError: (error) => {
+            console.error("Error:", error); 
+        }
+    });
+>>>>>>> Stashed changes
 
     const {register, handleSubmit, formState: { errors }} = useForm({
         resolver: yupResolver(validationSchema),
         mode: 'onBlur'
     });
 
+<<<<<<< Updated upstream
     const [isShow, setIsShow] = useState<boolean>(false)
     const [isShowRepeat, setIsShowRepeat] = useState<boolean>(false)
     
@@ -47,6 +72,13 @@ const SignUp = ()=>{
         // mutate(data);
         // console.log('Form data>>>', data);
          await registerUser(data)
+=======
+    const handle = async (data: SignUpFormShape) => {
+
+         mutate(data)
+        // console.log(data);
+        
+>>>>>>> Stashed changes
     };
 
     return(
