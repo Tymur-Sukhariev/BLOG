@@ -1,29 +1,28 @@
-# Create T3 App
+# 📝 Blog Project
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## 🚀 Overview  
+This is a full-stack blog application built with modern web technologies. It allows users to read, search, and interact with blog posts, manage their profiles, and engage with the community through likes and comments.
 
-## What's next? How do I make an app with this?
+## 🛠️ Tech Stack  
+- **Frontend:** React, Next.js, TypeScript, Tailwind CSS  
+- **Backend:** Next.js API Routes, Prisma ORM  
+- **Database:** PostgreSQL  
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## ✨ Features  
+- **🏠 Home Page (About Page)** – Displays an introduction to the blog
+  <img width="612" alt="Screenshot 2025-03-07 at 19 30 24" src="https://github.com/user-attachments/assets/aa0a7f6c-95a1-4bf1-8bff-8a8faa0c4615" />
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **🔍 Blog Posts** – View all posts with search functionality
+<img width="552" alt="Screenshot 2025-03-07 at 19 33 39" src="https://github.com/user-attachments/assets/8198d595-4558-4d00-8500-5417a8688bb4" />
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- **📝 Post Details** – Read detailed posts, like, and comment
+  <img width="275" alt="Screenshot 2025-03-07 at 19 33 53" src="https://github.com/user-attachments/assets/44f35dc3-ac3d-4b85-875e-b44d738729e0" />
 
-## Learn More
+- **👤 User Profile** – View and edit user profile data
+  <img width="722" alt="Screenshot 2025-03-07 at 19 35 12" src="https://github.com/user-attachments/assets/e00ee767-45a6-42a1-9996-1a849ef8f591" />
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- **🔐 Authentication** – Secure login system
+  <img width="774" alt="Screenshot 2025-03-07 at 19 34 46" src="https://github.com/user-attachments/assets/7ca5de09-6e7b-49b7-98cb-2e6f235082f4" />
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- **❓ FAQ Page** – Frequently Asked Questions
+  <img width="623" alt="Screenshot 2025-03-07 at 19 34 24" src="https://github.com/user-attachments/assets/fca0b004-f8d7-4749-9891-f740c8840ebb" />
